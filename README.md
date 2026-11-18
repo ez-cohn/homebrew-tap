@@ -7,12 +7,12 @@ Install recipes for tools by ez-cohn.
 Verified camera and audio card offloads for macOS.
 [Project page](https://github.com/ez-cohn/dit-offloader)
 
-```
+```sh
 brew install ez-cohn/tap/dit-offloader
 ```
 
 To update later:
 
-```
+```sh
 brew update && brew upgrade dit-offloader
 ```
