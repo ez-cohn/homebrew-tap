@@ -1,9 +1,9 @@
 class DitOffloader < Formula
   desc "Verified camera and audio card offloads from the command-line"
   homepage "https://github.com/ez-cohn/dit-offloader"
-  url "https://github.com/ez-cohn/dit-offloader/archive/3bdf10b7bc4a2cb20957ec5fae6fabe53b821fea.tar.gz"
-  version "0.3.0"
-  sha256 "7cc9bb5b6e0e6fbce068250925b110d914f9aa5214c715d0222e43bb752f798b"
+  url "https://github.com/ez-cohn/dit-offloader/archive/34f0d8fe3e55d9e8658e479aa9d32b629d493cd7.tar.gz"
+  version "0.3.1"
+  sha256 "bc79e5275c844f3e738ff70fdd35ce717efad0b24dd65a3992d1fc843a759eb7"
   license "MIT"
   head "https://github.com/ez-cohn/dit-offloader.git", branch: "main"
 
