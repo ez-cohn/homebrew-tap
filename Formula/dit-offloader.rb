@@ -1,9 +1,9 @@
 class DitOffloader < Formula
   desc "Verified camera and audio card offloads from the command-line"
   homepage "https://github.com/ez-cohn/dit-offloader"
-  url "https://github.com/ez-cohn/dit-offloader/archive/d32f01837d5cabc567aecc7a33e1165e12888c5b.tar.gz"
-  version "0.3.2"
-  sha256 "9d9e24d5c5b295d10367214e0104a44780eb968fb3bf77f24f972bcda61e5b36"
+  url "https://github.com/ez-cohn/dit-offloader/archive/0f29fde34cf398b5d6b0e9fdef7772ab2e7478c9.tar.gz"
+  version "0.4.0"
+  sha256 "d604b7b420300cc5476c01f43bd667db04b5a0fa3eff8860607875f8e1c26465"
   license "MIT"
   head "https://github.com/ez-cohn/dit-offloader.git", branch: "main"
 
@@ -11,7 +11,9 @@ class DitOffloader < Formula
   depends_on "xxhash"
 
   def install
-    bin.install "bin/dit-offloader"
+    # The helper that makes each check read the copy from the drive, not from memory.
+    system ENV.cc, "-O2", "-o", "dit-offloader-evict", "src/dit-offloader-evict.c"
+    bin.install "bin/dit-offloader", "dit-offloader-evict"
   end
 
   def caveats
@@ -27,6 +29,8 @@ class DitOffloader < Formula
 
   test do
     assert_match version.to_s, shell_output("#{bin}/dit-offloader --version")
+    (testpath/"cached.bin").write "x" * 100_000
+    assert_match(/^[01]$/, shell_output("#{bin}/dit-offloader-evict #{testpath}/cached.bin").strip)
 
     # A real offload of a fake card to two folders, without touching any drive.
     ENV["DIT_OFFLOADER_CONFIG"] = testpath/"config"
